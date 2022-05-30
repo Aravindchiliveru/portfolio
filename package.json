@@ -11,6 +11,7 @@
     "gsap": "^3.10.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "tailwindcss": "^3.0.24",
     "three": "^0.141.0"
   },
   "devDependencies": {
