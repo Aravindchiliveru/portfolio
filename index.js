@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.124.0/build/three.module.js'
+import * as THREE from 'three'
 import vertexShader from './shaders/vertex.glsl'
 import fragmentShader from './shaders/fragment.glsl'
 import atmosphereVertexShader from './shaders/atmosphereVertex.glsl'
@@ -30,7 +30,7 @@ const sphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.Shade
        fragmentShader : fragmentShader,
        uniforms : {
            globeTexture : {
-               value : new THREE.TextureLoader().load('https://b3d.interplanety.org/wp-content/upload_content/2016/08/01-3.jpg')
+               value : new THREE.TextureLoader().load('globe.jpg', function(texture){new THREE.MeshBasicMaterial({map : texture,overdraw : 0.5})})
            }
        }
 }))
