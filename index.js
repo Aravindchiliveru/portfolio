@@ -49,7 +49,7 @@ atmosphere.scale.set(1.1, 1.1, 1.1)
 scene.add(atmosphere)
 
 const group = new THREE.Group()
-group.add(sphere)
+//group.add(sphere)
 scene.add(group)
 
 const starGeometry = new THREE.BufferGeometry()
