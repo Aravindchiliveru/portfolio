@@ -24,18 +24,11 @@ const renderer = new THREE.WebGLRenderer(
 renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight)
 renderer.setPixelRatio(window.devicePixelRatio)
 
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.ShaderMaterial({
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.MeshBasicMaterial({
     // color : 0xFF0000
-        vertexShader : vertexShader,
-       fragmentShader : fragmentShader,
-       uniforms : {
-           globeTexture : {
-               value : new THREE.TextureLoader().load('globe.jpg')
-           }
-       }
+      map : new THREE.TextureLoader().load('globe.jpg')
 }))
 
-scene.add(sphere)
 
 const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.ShaderMaterial({
     // color : 0xFF0000
@@ -48,6 +41,10 @@ const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.S
 atmosphere.scale.set(1.1, 1.1, 1.1)
 
 scene.add(atmosphere)
+
+const group = new THREE.Group()
+group.add(sphere)
+scene.add(group)
 
 const starGeometry = new THREE.BufferGeometry()
 const starMaterial = new THREE.PointsMaterial({
@@ -70,10 +67,26 @@ const stars = new THREE.Points(starGeometry, starMaterial)
 scene.add(stars)
 camera.position.z = 15
 
+const mouse = {
+    x : 0,
+    y : 0
+}
+
 function animate() {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
     sphere.rotation.y += 0.003
+    gsap.to(group.rotation, {
+        x : -mouse.y * 0.3,
+        y : mouse.x * 0.5,
+        duration : 2,
+    })
 }
 
 animate()
+
+
+addEventListener('mousemove', () => {
+    mouse.x = (event.clientX/innerWidth)*2 - 1;
+    mouse.y = (event.clientY/innerHeight)*2 + 1;
+})
