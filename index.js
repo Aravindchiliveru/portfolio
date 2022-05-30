@@ -30,7 +30,7 @@ const sphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.Shade
        fragmentShader : fragmentShader,
        uniforms : {
            globeTexture : {
-               value : new THREE.TextureLoader().load('globe.jpg')
+               value : new THREE.TextureLoader().load('../globe.jpg')
            }
        }
 }))
