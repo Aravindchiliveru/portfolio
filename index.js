@@ -74,8 +74,8 @@ scene.add(stars)
 camera.position.z = 15
 
 const mouse = {
-    x : undefined,
-    y : undefined
+    x : 0,
+    y : 0
 }
 
 function animate() {
