@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'https://unpkg.com/three@0.124.0/build/three.module.js'
 import vertexShader from './shaders/vertex.glsl'
 import fragmentShader from './shaders/fragment.glsl'
 import atmosphereVertexShader from './shaders/atmosphereVertex.glsl'
