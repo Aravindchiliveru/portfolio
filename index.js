@@ -6,6 +6,7 @@ import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl'
 import gsap from 'gsap'
 import { Float32BufferAttribute } from 'three'
 
+
 const canvasContainer = document.querySelector('#canvasContainer')
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(
