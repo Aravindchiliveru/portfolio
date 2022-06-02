@@ -5,7 +5,7 @@ import atmosphereVertexShader from './shaders/atmosphereVertex.glsl'
 import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl'
 import gsap from 'gsap'
 import imagewrap from './globe.jpg'
-
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 const canvasContainer = document.querySelector('#canvasContainer')
 const scene = new THREE.Scene()
@@ -15,13 +15,13 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000
 )
-
 const renderer = new THREE.WebGLRenderer(
-{
-    antialias : true,
-    canvas : document.querySelector('canvas')
-}
-)
+    {
+        antialias : true,
+        canvas : document.querySelector('canvas')
+    }
+    )
+    const controls = new OrbitControls(camera, renderer.domElement);
 renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight)
 renderer.setPixelRatio(window.devicePixelRatio)
 
@@ -53,7 +53,7 @@ const starMaterial = new THREE.PointsMaterial({
 })
 
 const starVertices = []
-for(let i=0; i<10000; i++){
+for(let i=0; i<50000; i++){
     const x = (Math.random() - 0.5)*2000
     const y = (Math.random() - 0.5)*2000
     const z = -(Math.random())*2000
@@ -61,7 +61,7 @@ for(let i=0; i<10000; i++){
 }
 
 starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(
-    starVertices, 3
+    starVertices, 4
 ))
 
 const stars = new THREE.Points(starGeometry, starMaterial)
@@ -76,9 +76,10 @@ const mouse = {
 function animate() {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
-    sphere.rotation.y += 0.003
+    sphere.rotation.y += 0.001
+    controls.update()
     gsap.to(group.rotation, {
-        x : -mouse.y * 0.3,
+        x : mouse.y * 0.3,
         y : mouse.x * 0.5,
         duration : 2,
     })
