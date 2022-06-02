@@ -9,7 +9,129 @@
         <source src="src/images/daylight-14872.mp3" type="audio/mpeg">
     </audio>
 </head>
-<link rel="stylesheet" href="index.css">
+<style>
+    html,body{
+    margin: 0;
+    --webkit-font-smoothing: antialiased;
+    font-family: 'Poppins', sans-serif;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-image: url(src/images/bg-texture.png);
+}
+.nav{
+    height: 4rem;
+    background-color: rgb(94, 211, 94);
+}
+.container{
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    
+}
+.InfoContainer{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #2c2c6c;
+    border: 1px solid white;
+    border-radius: 3rem;
+    color: #fff;
+
+   
+}
+.InfoContainer:hover{
+    background: rgb(0, 0, 0);
+}
+
+.CanvaContainer{
+    height: 50%;
+    
+}
+.btn{
+      width: max-content;
+    display: inline-block;
+    color: rgb(7, 7, 7);
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    border: 1px solid black;
+    transition: all 400ms ease;
+    background: rgb(232, 232, 232);
+    margin-bottom: 20px;
+}
+.btn:hover {
+    background: #4db5ff;
+    color:  #1f1f38;
+    border-color: transparent;
+}
+.portbtn{
+    float: right;
+    margin-top: 6px;
+}
+@keyframes wipe-enter {
+	0% {
+		transform: scale(0, 1);
+	}
+	50% {
+		transform: scale(0, .25);
+	}
+}
+
+.square-animation {
+      animation: wipe-enter 5s 1;
+    }
+
+    .fade-in-image {
+        animation: fadeIn 5s;
+        -webkit-animation: fadeIn 5s;
+        -moz-animation: fadeIn 5s;
+        -o-animation: fadeIn 5s;
+        -ms-animation: fadeIn 5s;
+      }
+      @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-moz-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-webkit-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-o-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+      
+      @-ms-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+@media screen and (min-width > 768px) {
+    .InfoContainer{
+        width: fit-content;
+    }
+}
+
+@media screen and (max-width < 600px) {
+    .InfoContainer{
+    margin:0;
+    height: 50%;
+    }   
+    .container{
+        height: 100vh;
+    }
+}
+
+</style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <body>
     <div class='container'>
