@@ -25,9 +25,14 @@ const renderer = new THREE.WebGLRenderer(
 renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight)
 renderer.setPixelRatio(window.devicePixelRatio)
 
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.MeshBasicMaterial({
-    // color : 0xFF0000
-      map : new THREE.TextureLoader().load(imagewrap)
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(5,50,50), new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+     uniforms : {
+         globeTexture: {
+         value : new THREE.TextureLoader().load('./globe.jpg') 
+     }
+    }
 }))
 
 
@@ -66,7 +71,7 @@ starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(
 
 const stars = new THREE.Points(starGeometry, starMaterial)
 scene.add(stars)
-camera.position.z = 15
+camera.position.z = 13
 
 const mouse = {
     x : 0,
@@ -92,3 +97,19 @@ addEventListener('mousemove', () => {
     mouse.x = (event.clientX/innerWidth)*2 - 1;
     mouse.y = (event.clientY/innerHeight)*2 + 1;
 })
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const square = entry.target.querySelector('.square');
+  
+      if (entry.isIntersecting) {
+        square.classList.add('square-animation');
+        return; // if we added the class, exit the function
+      }
+  
+      // We're not intersecting, so remove the class!
+      square.classList.remove('square-animation');
+    });
+  });
+  
+  observer.observe(document.querySelector('.container'));
